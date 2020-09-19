@@ -1,0 +1,88 @@
+{
+    "emeraldwalk.runonsave": {
+        "autoClearConsole": true,
+        "commands": [
+            {
+                "isAsync": true,
+                "cmd": "go mod tidy"
+            },
+            {
+                "match": "\\.go$",
+                "isAsync": true,
+                "cmd": "goimports -w ."
+            },
+            {
+                "match": "\\.go$",
+                "isAsync": true,
+                "cmd": "goformat -w ."
+            }
+        ]
+    },
+    "editor.formatOnSave": true,
+    "go.testFlags": [
+        "-v"
+    ],
+    "cSpell.words": [
+        "Donec",
+        "Proin",
+        "UUID",
+        "aboslute",
+        "accumsan",
+        "adipiscing",
+        "arcu",
+        "augue",
+        "consectetur",
+        "cursus",
+        "decryptor",
+        "egestas",
+        "elementum",
+        "elit",
+        "enim",
+        "euismod",
+        "facilisis",
+        "faucibus",
+        "feugiat",
+        "fringilla",
+        "github",
+        "gravida",
+        "hashicorp",
+        "hendrerit",
+        "hokaccha",
+        "http",
+        "import",
+        "ioutil",
+        "justo",
+        "lacus",
+        "laoreet",
+        "lobortis",
+        "malesuada",
+        "mauris",
+        "metus",
+        "morbi",
+        "netus",
+        "nunc",
+        "package",
+        "palantir",
+        "pellentesque",
+        "porta",
+        "porttitor",
+        "prettyjson",
+        "pulvinar",
+        "quis",
+        "quisque",
+        "sapien",
+        "scelerisque",
+        "senectus",
+        "sollicitudin",
+        "structs",
+        "tfstate",
+        "tincidunt",
+        "tristique",
+        "turpis",
+        "ultricies",
+        "urandom",
+        "urna",
+        "vestibulum",
+        "volutpat"
+    ]
+}
