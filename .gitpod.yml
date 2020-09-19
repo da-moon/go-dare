@@ -1,0 +1,18 @@
+image:
+  file: .gitpod.Dockerfile
+
+checkoutLocation: "go/src/github.com/da-moon/go-dare"
+workspaceLocation: "go/src/github.com/da-moon/go-dare"
+tasks:
+  - init: >
+      go env -w GOPRIVATE=github.com/da-moon &&
+      GO111MODULE=on go get mvdan.cc/gofumpt &&
+      GO111MODULE=off go get -u -v github.com/cuonglm/gocmt &&
+      GO111MODULE=off go get -u -v github.com/palantir/go-compiles &&
+      GO111MODULE=off go get -u -v github.com/mohae/nocomment/cmd/nocomment &&
+      GO111MODULE=off go get -u -v github.com/eandre/discover/...  &&
+      GO111MODULE=off go get -u -v honnef.co/go/tools/cmd/staticcheck &&
+      cd $GOPATH/src/honnef.co/go/tools/cmd/staticcheck &&
+      git checkout 2020.1.4 &&
+      go get &&
+      go install
