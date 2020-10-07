@@ -87,7 +87,7 @@ func (r *EncryptRequest) Sanitize() error {
 		return err
 	}
 	// appending destination root path if exists
-	if len(r.DestinationRootPath) != 0 {
+	if r.DestinationRootPath != "" {
 		r.DestinationRootPath, err = filepath.Abs(r.DestinationRootPath)
 		if err != nil {
 			err = stacktrace.Propagate(err, "could not get aboslute path for destination root path of '%v'", r.DestinationRootPath)
@@ -130,12 +130,12 @@ func (r *EncryptResponse) Sanitize() error {
 		err = stacktrace.NewError("logger was nil")
 		return err
 	}
-	if len(r.RandomNonce) == 0 {
+	if r.RandomNonce == "" {
 		err = stacktrace.NewError("random nonce for encrypt response is empty")
 		return err
 	}
 	for k, v := range r.EncryptedArtifacts {
-		if len(k) == 0 {
+		if k == "" {
 			err = stacktrace.NewError("output path for encrypt response is empty")
 			return err
 		}

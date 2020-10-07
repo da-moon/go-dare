@@ -28,7 +28,7 @@ type Key struct {
 // WithEncryptionKey sets encryption key
 func WithEncryptionKey(arg string) KeyOption {
 	return func(s *Key) error {
-		if len(arg) != 0 {
+		if arg != "" {
 			s.EncryptionKey = arg
 		}
 		return nil
@@ -38,7 +38,7 @@ func WithEncryptionKey(arg string) KeyOption {
 // WithNonce sets nonce value
 func WithNonce(arg string) KeyOption {
 	return func(s *Key) error {
-		if len(arg) != 0 {
+		if arg != "" {
 			s.Nonce = arg
 		}
 		return nil
@@ -48,7 +48,7 @@ func WithNonce(arg string) KeyOption {
 // WithKeyFile reads encryption key from file
 func WithKeyFile(arg string) KeyOption {
 	return func(s *Key) error {
-		if len(arg) != 0 {
+		if arg != "" {
 			b, err := ioutil.ReadFile(arg)
 			if err != nil {
 				err = stacktrace.Propagate(err, " could not read master key file at '%s'. ", arg)
@@ -85,7 +85,7 @@ func NewKey(l *log.Logger, uuid string, opts ...KeyOption) (*Key, error) {
 // Sanitize check struct fields for unacceptable values and sets defaults
 func (k *Key) Sanitize() error {
 	var err error
-	if len(k.Nonce) == 0 {
+	if k.Nonce == "" {
 		nonce, err := RandomNonce()
 		if err != nil {
 			err = stacktrace.Propagate(err, "could not generate random nonce")
@@ -94,7 +94,7 @@ func (k *Key) Sanitize() error {
 		k.Nonce = hex.EncodeToString(nonce[:])
 		k.logger.Warn("[%s] key => generated random nonce '%s'", k.UUID, k.Nonce)
 	}
-	if len(k.EncryptionKey) == 0 {
+	if k.EncryptionKey == "" {
 		var key [32]byte
 		_, err = io.ReadFull(rand.Reader, key[:])
 		if err != nil {

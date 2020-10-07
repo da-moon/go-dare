@@ -11,11 +11,11 @@ type Hash struct {
 // Sanitize checks for unacceptable values
 func (h *Hash) Sanitize() error {
 	var err error
-	if len(h.Md5) == 0 {
+	if h.Md5 == "" {
 		err = stacktrace.NewError("returned MD5 hash of was an empty string")
 		return err
 	}
-	if len(h.Sha256) == 0 {
+	if h.Sha256 == "" {
 		err = stacktrace.NewError("returned Sha256 hash  was an empty string")
 		return err
 	}
