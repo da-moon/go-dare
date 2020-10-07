@@ -89,7 +89,7 @@ func (r *DecryptRequest) Sanitize() error {
 		return err
 	}
 	// appending destination root path if exists
-	if len(r.DestinationRootPath) != 0 {
+	if r.DestinationRootPath != "" {
 		r.DestinationRootPath, err = filepath.Abs(r.DestinationRootPath)
 		if err != nil {
 			err = stacktrace.Propagate(err, "could not get aboslute path for destination root path of '%v'", r.DestinationRootPath)
@@ -130,7 +130,7 @@ func (r *DecryptResponse) Sanitize() error {
 		return err
 	}
 	for k, v := range r.DecryptedArtifacts {
-		if len(k) == 0 {
+		if k == "" {
 			err = stacktrace.NewError("output path for decrypt response is empty")
 			return err
 		}
